@@ -75,9 +75,9 @@ def main(ip_addr,port):
 
         ### Sending process
         dataname.extend(["x","y"])
-        data.extend([accel_xout_scaled,accel_yout_scaled])
+        data.extend([str(accel_xout_scaled),str(accel_yout_scaled)])
 
-        network.send.send_data(data,dataname,ip_addr,port,"/print")
+        network.send.send_data(data,dataname,ip_addr,port,"/plot")
         time.sleep(0.5)
 
 if __name__ == '__main__':

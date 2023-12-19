@@ -2,16 +2,13 @@ import json
 import requests
 
 def send_data(data,dataname,ip_addr,port,uri):
-    json_data = {}
-    json_data.update(zip(data,dataname))
-
+    print("data:"+str(data)+" "+"dataname:"+str(dataname))
+    json_data = dict(zip(dataname,data))
+    
     # create request with header
     url = "http://" + ip_addr + ":" + port + uri 
 
     response = requests.post(
         url,
-        data = json.dumps(json_data)
+        json = json.dumps(json_data)
     )
-
-    print("[DEBUG] response:" + response.json())
-    
