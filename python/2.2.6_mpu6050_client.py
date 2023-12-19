@@ -71,7 +71,7 @@ def main(ip_addr,port):
 
         ### Send data ###
         # [TODO] Make senddata`s list
-        network.send.send_data(accel_xout,"accel_xout",ip_addr,port)
+        network.send.send_data(accel_xout,"accel_xout",ip_addr,port,"/print")
         time.sleep(0.5)
 
 if __name__ == '__main__':
