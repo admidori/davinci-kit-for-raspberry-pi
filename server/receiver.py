@@ -19,18 +19,24 @@ def receive_data():
         print(data)
         return json_data
     
+    # Error handling
     except Exception as e:
         return str(e)
 
 @app.route("/plot", methods=['POST','GET'])
 def plot_data():
-    json_data = request.get_json()
-    data_dict = json.loads(json_data)
+    try:
+        json_data = request.get_json()
+        data_dict = json.loads(json_data)
 
-    # Convert dict to list
-    dataname = list(data_dict.keys())
-    data = list(data_dict.values())
-    plot.plot_xyz(dataname,data)
+        # Convert dict to list
+        dataname = list(data_dict.keys())
+        data = list(data_dict.values())
+        plot.plot_xyz(dataname,data)
 
+    # Error handling
+    except Exception as e:
+        return str(e)
+    
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=False)
