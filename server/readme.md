@@ -11,4 +11,4 @@ Please refer to the `requirements.txt` and execute below in this directory:
 ```$ python3 python/2.2.6_mpu6050_client.py --ip_addr [Server's IP Adress] --port [Server's port number]```
 
 ## Step2. Start program at the server
-```$ python3 server/receiver.py```
+```$ flask --app receiver run host="0.0.0.0"```
