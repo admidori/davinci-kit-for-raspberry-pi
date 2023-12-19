@@ -45,6 +45,10 @@ def get_x_rotation(x,y,z):
 
 def main(ip_addr,port):
     while True:
+        # For sending
+        dataname = []
+        data = []
+
         time.sleep(0.1)
         gyro_xout = read_word_2c(0x43)
         gyro_yout = read_word_2c(0x45)
@@ -61,7 +65,7 @@ def main(ip_addr,port):
         accel_xout_scaled = accel_xout / 16384.0
         accel_yout_scaled = accel_yout / 16384.0
         accel_zout_scaled = accel_zout / 16384.0
-
+        
         print ("accel_xout: ", accel_xout, " scaled: ", accel_xout_scaled)
         print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
         print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
@@ -69,9 +73,11 @@ def main(ip_addr,port):
         print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
         print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
 
-        ### Send data ###
-        # [TODO] Make senddata`s list
-        network.send.send_data(accel_xout,"accel_xout",ip_addr,port,"/print")
+        ### Sending process
+        dataname.extend(["x","y"])
+        data.extend([accel_xout_scaled,accel_yout_scaled])
+
+        network.send.send_data(data,dataname,ip_addr,port,"/print")
         time.sleep(0.5)
 
 if __name__ == '__main__':
@@ -90,3 +96,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     main(args.ip_addr,args.port)
+    

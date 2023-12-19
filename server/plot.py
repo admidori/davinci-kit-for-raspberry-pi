@@ -1,3 +1,6 @@
-def plot_xyz(dataname,data):
-    print(dataname)
-    print(data)
+import tkinter as tk
+import matplotlib.pyplot as plt
+
+def plot_xy(dataname,data):  
+    plt.plot(data)
+    plt.show()
